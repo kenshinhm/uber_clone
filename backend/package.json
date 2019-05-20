@@ -5,6 +5,9 @@
     "license": "MIT",
     "devDependencies": {
         "@types/node": "^12.0.0",
+        "@types/cors": "^2.8.5",
+        "@types/helmet": "^0.0.43",
+        "@types/morgan": "^1.7.35",
         "nodemon": "^1.19.0",
         "ts-node": "^8.1.0",
         "tslint": "^5.16.0",
@@ -13,5 +16,11 @@
     },
     "scripts": {
         "dev": "cd src && nodemon --exec ts-node index.ts -e ts,graphql"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "graphql-yoga": "^1.17.4",
+        "helmet": "^3.18.0",
+        "morgan": "^1.9.1"
     }
 }
