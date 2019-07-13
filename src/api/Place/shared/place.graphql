@@ -8,3 +8,7 @@ type Place {
   createdAt: String!
   updatedAt: String
 }
+
+type Query {
+  place: Place
+}

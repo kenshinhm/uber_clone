@@ -7,3 +7,7 @@ type Verification {
   createdAt: String!
   updatedAt: String!
 }
+
+type Query {
+  verification: Verification
+}
