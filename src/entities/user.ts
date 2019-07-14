@@ -26,10 +26,13 @@ class User extends BaseEntity {
 
   @Column({ type: "text", unique: true })
   @IsEmail()
-  email: string;
+  email: string | null;
 
   @Column({ type: "boolean", default: false })
   verifiedEmail: boolean;
+
+  @Column({ type: "text", nullable: true })
+  facebookId: string;
 
   @Column({ type: "text" })
   firstName: string;
@@ -37,13 +40,13 @@ class User extends BaseEntity {
   @Column({ type: "text" })
   lastName: string;
 
-  @Column({ type: "int" })
+  @Column({ type: "int", nullable: true })
   age: number;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   password: string;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   phoneNumber: string;
 
   @Column({ type: "boolean", default: false })
