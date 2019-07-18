@@ -24,6 +24,7 @@
     "types": "graphql-to-typescript ./src/schema.graphql ./src/types/graph.d.ts"
   },
   "dependencies": {
+    "@types/jsonwebtoken": "^8.3.2",
     "@types/twilio": "^0.0.10",
     "babel-runtime": "^6.26.0",
     "bcrypt": "^3.0.6",
@@ -33,6 +34,7 @@
     "graphql-tools": "^4.0.4",
     "graphql-yoga": "^1.17.4",
     "helmet": "^3.18.0",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "4.17.13",
     "merge-graphql-schemas": "^1.5.8",
     "morgan": "^1.9.1",
