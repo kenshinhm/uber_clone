@@ -1,8 +1,0 @@
-type PhoneVerificationResponse {
-    ok: Boolean!
-    error: String
-}
-
-type Mutation {
-    PhoneVerification(phoneNumber: String!): PhoneVerificationResponse
-}
