@@ -3,7 +3,7 @@ import {
     FacebookConnectMutationArgs,
     FacebookConnectResponse
 } from "../../../types/graph";
-import {Resolvers} from "../../../types/resolver";
+import { Resolvers } from "../../../types/resolver";
 import createJWT from "../../../utils/createJWT";
 
 const resolvers: Resolvers = {
@@ -12,12 +12,11 @@ const resolvers: Resolvers = {
             _,
             args: FacebookConnectMutationArgs
         ): Promise<FacebookConnectResponse> => {
-
-            const {facebookId} = args;
+            const { facebookId } = args;
 
             // Find Existing User with FacebookId
             try {
-                const existingUser = await User.findOne({facebookId});
+                const existingUser = await User.findOne({ facebookId });
                 if (existingUser) {
                     // Return if User Found
                     const token = createJWT(existingUser.id);

@@ -54,7 +54,7 @@ type Mutation {
   CompletePhoneVerification(phoneNumber: String!, key: String!): CompletePhoneVerificationResponse
   EmailSignIn(email: String!, password: String!): EmailSignInResponse!
   EmailSignUp(firstName: String!, lastName: String!, email: String!, password: String!, profilePhoto: String!, age: Int!, phoneNumber: String!): EmailSignUpResponse!
-  FacebookConnect(firstName: String!, lastName: String!, email: String, facebookId: String!): FacebookConnectResponse!
+  FacebookConnect(firstName: String!, lastName: String!, email: String!, facebookId: String!): FacebookConnectResponse!
   StartPhoneVerification(phoneNumber: String!): StartPhoneVerificationResponse
 }
 
@@ -88,7 +88,7 @@ type Query {
 
 type User {
   id: Int!
-  email: String
+  email: String!
   verifiedEmail: Boolean!
   facebookId: String
   firstName: String!

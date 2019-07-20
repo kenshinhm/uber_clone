@@ -1,13 +1,13 @@
-import { verificationTarget } from "../types/types";
 import {
     BaseEntity,
+    BeforeInsert,
     Column,
+    CreateDateColumn,
     Entity,
     PrimaryGeneratedColumn,
-    CreateDateColumn,
-    UpdateDateColumn,
-    BeforeInsert
+    UpdateDateColumn
 } from "typeorm";
+import { verificationTarget } from "../types/types";
 
 export const PHONE = "PHONE";
 export const EMAIL = "EMAIL";
