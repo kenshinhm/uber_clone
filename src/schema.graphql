@@ -6,15 +6,6 @@ type Chat {
   updatedAt: String
 }
 
-type Query {
-  chat: Chat
-  message: Message
-  place: Place
-  ride: Ride
-  user: User
-  verification: Verification
-}
-
 type Message {
   id: Int!
   text: String!
@@ -83,6 +74,16 @@ type FacebookConnectResponse {
   ok: Boolean!
   error: String
   token: String
+}
+
+type GetMyProfileResponse {
+  ok: Boolean!
+  error: String
+  user: User
+}
+
+type Query {
+  GetMyProfile: GetMyProfileResponse!
 }
 
 type User {

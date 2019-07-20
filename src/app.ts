@@ -1,10 +1,10 @@
 import cors from "cors";
-import { GraphQLServer } from "graphql-yoga";
+import {GraphQLServer} from "graphql-yoga";
 import helmet from "helmet";
 import logger from "morgan";
 import schema from "./schema";
 import decodeJWT from "./utils/decodeJWT";
-import { NextFunction, Response } from "express";
+import {NextFunction, Response} from "express";
 
 class App {
     public app: GraphQLServer;
@@ -34,7 +34,6 @@ class App {
         next: NextFunction
     ): Promise<void> => {
         const token = req.get("X-JWT");
-        console.log("here");
         if (token) {
             const user = await decodeJWT(token);
             if (user) {
