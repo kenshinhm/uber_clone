@@ -5,8 +5,8 @@ type EditPlaceResonse {
 
 type Mutation {
     EditPlace(
-        placeId: Int!
+        id: Int!
         name: String,
-        isFav: Boolean): EditPlaceResonse
+        isFav: Boolean): EditPlaceResonse!
 }
 
