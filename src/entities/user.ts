@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { IsEmail } from "class-validator";
+import {IsEmail} from "class-validator";
 import {
     BaseEntity,
     BeforeInsert,
@@ -15,6 +15,7 @@ import {
 import Chat from "./chat";
 import Message from "./message";
 import Ride from "./ride";
+import Place from "./place";
 
 const BCRYPT_ROUNDS = 10;
 
@@ -23,53 +24,53 @@ class User extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ type: "text", unique: true })
+    @Column({type: "text", unique: true})
     @IsEmail()
     email: string;
 
-    @Column({ type: "boolean", default: false })
+    @Column({type: "boolean", default: false})
     verifiedEmail: boolean;
 
-    @Column({ type: "text", nullable: true })
+    @Column({type: "text", nullable: true})
     facebookId: string;
 
-    @Column({ type: "text" })
+    @Column({type: "text"})
     firstName: string;
 
-    @Column({ type: "text" })
+    @Column({type: "text"})
     lastName: string;
 
-    @Column({ type: "int", nullable: true })
+    @Column({type: "int", nullable: true})
     age: number;
 
-    @Column({ type: "text", nullable: true })
+    @Column({type: "text", nullable: true})
     password: string;
 
-    @Column({ type: "text", nullable: true })
+    @Column({type: "text", nullable: true})
     phoneNumber: string;
 
-    @Column({ type: "boolean", default: false })
+    @Column({type: "boolean", default: false})
     verifiedPhoneNumber: boolean;
 
-    @Column({ type: "text" })
+    @Column({type: "text"})
     profilePhoto: string;
 
-    @Column({ type: "boolean", default: false })
+    @Column({type: "boolean", default: false})
     isDriving: boolean;
 
-    @Column({ type: "boolean", default: false })
+    @Column({type: "boolean", default: false})
     isRiding: boolean;
 
-    @Column({ type: "boolean", default: false })
+    @Column({type: "boolean", default: false})
     isTaken: boolean;
 
-    @Column({ type: "double precision", default: 0 })
+    @Column({type: "double precision", default: 0})
     lastLng: number;
 
-    @Column({ type: "double precision", default: 0 })
+    @Column({type: "double precision", default: 0})
     lastLat: number;
 
-    @Column({ type: "double precision", default: 0 })
+    @Column({type: "double precision", default: 0})
     lastOrientation: number;
 
     @ManyToOne(type => Chat, chat => chat.participants)
@@ -83,6 +84,9 @@ class User extends BaseEntity {
 
     @OneToMany(type => Ride, ride => ride.driver)
     ridesAsDriver: Ride[];
+
+    @OneToMany(type => Place, place => place.user)
+    places: Place[];
 
     @CreateDateColumn()
     createdAt: string;

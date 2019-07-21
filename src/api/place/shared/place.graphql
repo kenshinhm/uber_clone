@@ -4,7 +4,8 @@ type Place {
     lat: Float!
     lng: Float!
     address: String!
-    isFavorite: Boolean!
+    isFav: Boolean!
+    user: User!
     createdAt: String!
     updatedAt: String
 }
