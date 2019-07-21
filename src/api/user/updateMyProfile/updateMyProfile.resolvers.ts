@@ -2,6 +2,7 @@ import {Resolvers} from "../../../types/resolver";
 import privateResolver from "../../../utils/privateResolver";
 import {UpdateMyProfileMutationArgs} from "../../../types/graph";
 import User from "../../../entities/user";
+import cleanNullArgs from "../../../utils/cleanNullArgs";
 
 const resolvers: Resolvers = {
     Mutation: {
@@ -9,12 +10,8 @@ const resolvers: Resolvers = {
             async (_, args: UpdateMyProfileMutationArgs, {req}) => {
                 // only get not null args
                 const user: User = req.user;
-                const notNull: any = {};
-                Object.keys(args).forEach(key => {
-                    if (args[key] !== null) {
-                        notNull[key] = args[key];
-                    }
-                });
+                const notNull: any = cleanNullArgs(args);
+
                 if (notNull.password !== null) {
                     user.password = notNull.password;
                     await user.save();
