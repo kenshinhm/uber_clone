@@ -21,7 +21,7 @@ type User {
     ridesAsPassenger: [Ride]
     ridesAsDriver: [Ride]
     places: [Place]
-    lastLng: Float
-    lastLat: Float
-    lastOrientation: Float
+    lng: Float
+    lat: Float
+    orientation: Float
 }

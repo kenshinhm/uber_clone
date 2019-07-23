@@ -1,20 +1,20 @@
+import {Between, getRepository} from "typeorm";
 import User from "../../../entities/user";
+import {GetNearByDriversResponse} from "../../../types/graph";
 import {Resolvers} from "../../../types/resolver";
 import privateResolver from "../../../utils/privateResolver";
-import {GetNearByDriversResponse} from "../../../types/graph";
-import {Between, getRepository} from "typeorm";
 
 const resolvers: Resolvers = {
     Query: {
         GetNearByDrivers: privateResolver(
             async (_, __, {req}): Promise<GetNearByDriversResponse> => {
                 const user: User = req.user;
-                const {lastLat, lastLng} = user;
+                const {lat, lng} = user;
                 try {
                     const drivers: User[] = await getRepository(User).find({
                         isDriving: true,
-                        lastLat: Between(lastLat - 0.05, lastLat + 0.05),
-                        lastLng: Between(lastLng - 0.05, lastLng + 0.05),
+                        lat: Between(lat - 0.05, lat + 0.05),
+                        lng: Between(lng - 0.05, lng + 0.05),
                     });
                     return {
                         ok: true,

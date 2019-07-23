@@ -14,8 +14,8 @@ import {
 } from "typeorm";
 import Chat from "./chat";
 import Message from "./message";
-import Ride from "./ride";
 import Place from "./place";
+import Ride from "./ride";
 
 const BCRYPT_ROUNDS = 10;
 
@@ -65,13 +65,13 @@ class User extends BaseEntity {
     isTaken: boolean;
 
     @Column({type: "double precision", default: 0})
-    lastLng: number;
+    lng: number;
 
     @Column({type: "double precision", default: 0})
-    lastLat: number;
+    lat: number;
 
     @Column({type: "double precision", default: 0})
-    lastOrientation: number;
+    orientation: number;
 
     @ManyToOne(type => Chat, chat => chat.participants)
     chat: Chat;
