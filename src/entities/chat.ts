@@ -1,30 +1,40 @@
+import {
+    BaseEntity, Column,
+    CreateDateColumn,
+    Entity,
+    ManyToOne,
+    OneToMany,
+    PrimaryGeneratedColumn,
+    UpdateDateColumn
+} from "typeorm";
 import Message from "./message";
 import User from "./user";
-import {
-  BaseEntity,
-  Entity,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
-  OneToMany
-} from "typeorm";
 
 @Entity()
 class Chat extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  @OneToMany(type => Message, message => message.chat)
-  messages: Message[];
+    @OneToMany(type => Message, message => message.chat)
+    messages: Message[];
 
-  @OneToMany(type => User, user => user.chat)
-  participants: User[];
+    @Column({nullable: true})
+    passengerId: number;
 
-  @CreateDateColumn()
-  createdAt: string;
+    @Column({nullable: true})
+    driverId: number;
 
-  @UpdateDateColumn()
-  updatedAt: string;
+    @ManyToOne(type => User, user => user.chatsAsPassenger)
+    passenger: User;
+
+    @ManyToOne(type => User, user => user.chatsAsDriver)
+    driver: User;
+
+    @CreateDateColumn()
+    createdAt: string;
+
+    @UpdateDateColumn()
+    updatedAt: string;
 }
 
 export default Chat;
