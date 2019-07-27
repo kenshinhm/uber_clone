@@ -10,7 +10,7 @@ const resolvers: Resolvers = {
             async (_, args: RequestRideMutationArgs, {req, pubSub})
                 : Promise<RequestRideResponse> => {
                 const user: User = req.user;
-                if (!user.isRiding) {
+                if (!user.isRiding && !user.isDriving) {
                     try {
                         const ride = await Ride.create({
                             ...args,
@@ -35,7 +35,7 @@ const resolvers: Resolvers = {
                 } else {
                     return {
                         ok: false,
-                        error: 'You are already riding!',
+                        error: '!user.isRiding && !user.isDriving!',
                         ride: null,
                     }
                 }
