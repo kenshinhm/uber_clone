@@ -1,13 +1,13 @@
+import Ride from "../../../entities/ride";
 import User from "../../../entities/user";
 import {UpdateRideStatusMutationArgs, UpdateRideStatusResponse} from "../../../types/graph";
 import {Resolvers} from "../../../types/resolver";
 import privateResolver from "../../../utils/privateResolver";
-import Ride from "../../../entities/ride";
 
 const resolvers: Resolvers = {
     Mutation: {
         UpdateRideStatus: privateResolver(
-            async (_, args: UpdateRideStatusMutationArgs, {req})
+            async (_, args: UpdateRideStatusMutationArgs, {req, pubSub})
                 : Promise<UpdateRideStatusResponse> => {
                 const user: User = req.user;
                 if (user.isDriving) {
@@ -29,10 +29,10 @@ const resolvers: Resolvers = {
                                 driver: user
                             })
                         }
-
                         if (ride) {
                             ride.status = args.status;
                             await ride.save();
+                            pubSub.publish("rideUpdate", {RideStatusSubscription: ride});
                             return {
                                 ok: true,
                                 error: null
@@ -43,7 +43,6 @@ const resolvers: Resolvers = {
                                 error: "Can't update ride"
                             }
                         }
-
                     } catch (error) {
                         return {
                             ok: false,
