@@ -8,7 +8,7 @@ import privateResolver from "../../../utils/privateResolver";
 const resolvers: Resolvers = {
     Mutation: {
         SendChatMessage: privateResolver(
-            async (_, args: SendChatMessageMutationArgs, {req})
+            async (_, args: SendChatMessageMutationArgs, {req, pubSub})
                 : Promise<SendChatMessageResponse> => {
                 const user: User = req.user;
                 try {
@@ -34,6 +34,7 @@ const resolvers: Resolvers = {
                         chat,
                         user
                     }).save();
+                    pubSub.publish("newChatMessage", {MessageSubscription: message});
                     return {
                         ok: true,
                         error: null,
